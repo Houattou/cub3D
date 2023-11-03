@@ -6,7 +6,7 @@
 /*   By: houattou <houattou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:02:58 by houattou          #+#    #+#             */
-/*   Updated: 2023/11/02 20:03:16 by houattou         ###   ########.fr       */
+/*   Updated: 2023/11/02 20:39:23 by houattou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void raycasting()
     drawing(data);
  
     draw_player(data);
-    // generate3d_projection(data);
 
     mlx_key_hook(data->mlx, &my_keyhook, data);
     mlx_image_to_window(data->mlx, data->img, 0, 0);

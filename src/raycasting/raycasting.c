@@ -6,7 +6,7 @@
 /*   By: houattou <houattou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:54:28 by houattou          #+#    #+#             */
-/*   Updated: 2023/11/02 19:09:22 by houattou         ###   ########.fr       */
+/*   Updated: 2023/11/03 10:47:41 by houattou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ draw_line(data->img, data->player->x*MINIMAP_SCAL_FACTOR, data->player->y*MINIMA
           wall_height = HEIGHT;
  
 
-   int y_start = (WIDTH / 2) - (wall_height/2);
-   int  y_end = (WIDTH / 2) + (wall_height /2);
+   int y_start = (HEIGHT / 2) - (wall_height/2);
+   int  y_end = (HEIGHT/ 2) + (wall_height /2);
 
    if(dis_v >dis_h)
    {
@@ -100,7 +100,6 @@ draw_line(data->img, data->player->x*MINIMAP_SCAL_FACTOR, data->player->y*MINIMA
     }
    return(data);
 }
-
 
 
 

@@ -6,7 +6,7 @@
 #    By: houattou <houattou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/15 11:51:02 by houattou          #+#    #+#              #
-#    Updated: 2023/11/02 19:57:01 by houattou         ###   ########.fr        #
+#    Updated: 2023/11/03 10:17:26 by houattou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,17 +37,20 @@ all: $(NAME)
 	@echo "$(GREEN)✅ Compiled: $<$(RESET)"
 
 $(NAME): $(OBJS)
-	@make -C libft
-	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a  $(FRAMEWORKS) -o $(NAME) 
+	@make -C libft 
+	@make -C get_line
+	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a get_line/get_next_line.a $(FRAMEWORKS) -o $(NAME) 
 	@echo "$(GREEN)✅  CUB3D : Compilation successful!$(RESET)"
 
 clean:
-	@make -C libft/ clean
+	@make -C libft/ clean 
+	@make -C get_line/ clean
 	@rm -f $(OBJS)
 	@echo "$(GREEN)✅ Cleaned up object files$(RESET)"
 
 fclean: clean
-	@make -C libft/ fclean
+	@make -C libft/ fclean 
+	@make -C get_line/ fclean
 	@rm -f $(NAME)
 	@echo "$(GREEN)✅ Cleaned up $(NAME)$(RESET)"
 
