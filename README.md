@@ -4,7 +4,7 @@
 
 First i want to express my  gratitude to my  project collaborator, Hasna Ouattou. Her dedication, skills, and passion for our project have been invaluable.
 
-**GitHub:** [Houattou](https://github.com/Houattou)
+**GitHub:** [Houattou](https://github.com/emohamedd)
 
 Thank you, Hasna, for your hard work and commitment. 
 
