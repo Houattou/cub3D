@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houattou <houattou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emohamed <emohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 08:24:36 by houattou          #+#    #+#             */
-/*   Updated: 2022/10/29 20:22:15 by houattou         ###   ########.fr       */
+/*   Created: 2023/05/09 12:38:12 by emohamed          #+#    #+#             */
+/*   Updated: 2023/11/15 14:35:01 by emohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*chambre;
+	size_t	sizee;
+	void	*p;
 
-	chambre = malloc(size * count);
-	if (!chambre)
+	p = NULL;
+	sizee = count * size;
+	p = malloc(sizee);
+	if (!p)
 		return (NULL);
-	ft_bzero(chambre, size * count);
-	return (chambre);
+	ft_bzero(p, sizee);
+	return (p);
 }

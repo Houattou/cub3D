@@ -3,85 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: houattou <houattou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emohamed <emohamed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/13 13:02:58 by houattou          #+#    #+#             */
-/*   Updated: 2023/11/06 12:54:58 by houattou         ###   ########.fr       */
+/*   Created: 2023/10/13 13:02:58 by emohamed          #+#    #+#             */
+/*   Updated: 2023/11/16 14:11:03 by emohamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "./include/cub3d.h"
 
-
-void drawing(t_all_data *data)
+void	raycasting(t_all_data *data)
 {
-    int i;
-    int j;
-    i = 0;
-    while(i < ((SIZE_TITLE * data->map->height)) )
-    {
-        j = 0;
-        while(j < ((SIZE_TITLE * data->map->width)) )
-        {
-            if( i < ((SIZE_TITLE * data->map->height)/ 2) )
-                mlx_put_pixel(data->img, j, i,ft_pixel(0, 119, 190, 255));
-            else
-                mlx_put_pixel(data->img, j, i,ft_pixel(0, 100, 0, 255));
-            j++;    
-                    
-        }
-        i++;
-    }
-    draw_map(data);
-    draw_player(data);
-    render_rays(data);
+	init(data);
+	drawing(data);
+	mlx_key_hook(data->mlx, &my_keyhook, data);
+	mlx_image_to_window(data->mlx, data->img, 0, 0);
+	mlx_loop(data->mlx);
 }
 
-void raycasting(t_all_data *data)
+void	free_all_data(t_all_data *data)
 {
-    
-    initialize_player(data);
-    data->mlx = mlx_init(WIDTH ,HEIGHT , "MLX42", true);
-    data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-    drawing(data);
-    draw_map(data);
-    draw_player(data);
- 
-
-    mlx_key_hook(data->mlx, &my_keyhook, data);
-    mlx_image_to_window(data->mlx, data->img, 0, 0);
-
-    mlx_loop(data->mlx);
-    mlx_terminate(data->mlx);
-    
+	free_2d_arr(data->map->all_map);
+	if (data->mlx)
+		mlx_terminate(data->mlx);
+	if (data->img)
+		mlx_delete_image(data->mlx, data->img);
 }
-int main(int ac , char **av)
+
+int	main(int ac, char **av)
 {
-    int		fd;
-    t_all_data *data = (t_all_data*)malloc(sizeof(t_all_data));
-    data->player = (t_player *)malloc(sizeof(t_player));
-    data->cord = (t_cord *)malloc(sizeof(t_cord));
-    data->map =(t_map *)malloc(sizeof(t_map));
-    data->dir = (t_direc *)malloc(sizeof(t_direc));
+	t_all_data	*data;
 
-
-    if (ac != 2)
-		print_err("Wrong number of arguments\n");
-	else
+	data = NULL;
+	data = init_data(data);
+	if (data == NULL)
 	{
-		fd = open(av[1], O_RDONLY);
-		check_file_cub(av[1]);
-		if (fd == -1)
-		{
-			print_err("File not found\n");
-			exit(1);
-		}
-		else
-			readfile(fd, data->map, data->dir);
+		free_all_data(data);
+		return (EXIT_FAILURE);
 	}
-   raycasting(data);
-    return EXIT_SUCCESS;
+	parsing(data, ac, av);
+	raycasting(data);
+	free_all_data(data);
+	return (EXIT_SUCCESS);
 }
-
-
